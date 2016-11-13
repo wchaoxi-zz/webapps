@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n8@qnd##9yw@#@9o4s)&bv+v6u&=*bk3xa7z-f08ys70aby1_k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['ec2-54-160-34-150.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['ec2-54-160-34-150.compute-1.amazonaws.com', '54.160.34.150']
 
 
 # Application definition
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'grumblr',
         'USER': 'root',
-        'PASSWORD': '123'
+        'PASSWORD': '123',
     }
 }
 
@@ -121,12 +121,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.andrew.cmu.edu'
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = os.environ['MYID']
-# EMAIL_HOST_PASSWORD = os.environ['MYPWD']
-# EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.andrew.cmu.edu'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ['MYID']
+EMAIL_HOST_PASSWORD = os.environ['MYPWD']
+EMAIL_USE_TLS = True
 
 
 
