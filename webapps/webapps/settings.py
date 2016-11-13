@@ -81,8 +81,10 @@ WSGI_APPLICATION = 'webapps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'grumblr',
+        'USER': 'root',
+        'PASSWORD': ''
     }
 }
 
@@ -120,6 +122,13 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.andrew.cmu.edu'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = os.environ['MYID']
+# EMAIL_HOST_PASSWORD = os.environ['MYPWD']
+# EMAIL_USE_TLS = True
+
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'grumblr/media')
 

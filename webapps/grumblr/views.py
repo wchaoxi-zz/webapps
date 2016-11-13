@@ -184,7 +184,9 @@ def register(request):
     send_mail(subject="Verify Your Email",
               message=email_body,
               from_email="chaoxiw@andrew.cmu.edu",
-              recipient_list=[userprofile.email])
+              recipient_list=['wchaoxi@gmail.com'],
+              fail_silently=False)
+
 
     context['email'] = form.cleaned_data.get('email')
     return render(request, 'grumblr/needsconfirmation.html', context)
