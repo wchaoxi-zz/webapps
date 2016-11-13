@@ -151,7 +151,7 @@ def register(request):
 
     if request.method == 'GET':
         context['form'] = RegistrationForm()
-        user = User.objects.get(username='wcx')
+        # user = User.objects.get(username='wcx')
         return render(request, 'grumblr/signup.html', context)
 
     form = RegistrationForm(request.POST)
