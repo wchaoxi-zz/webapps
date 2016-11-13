@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'grumblr',
         'USER': 'root',
-        'PASSWORD': ''
+        'PASSWORD': '123'
     }
 }
 
