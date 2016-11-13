@@ -1,0 +1,56 @@
+{% extends 'grumblr/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block navbar %}<a class="navbar-brand" href="{% url 'log_out' %}">Log out</a>{% endblock %}
+
+{% block navbar2 %}<a class="navbar-brand" href="{% url 'home' %}">Home</a>{% endblock %}
+
+{% block script %}<script src="/static/js/pands.js" type="text/javascript"></script>{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-md-offset-4" >
+                <br/><br/>
+                {% if userprofile.photo %}
+                <img src="{% url 'photo' user.username %}" class="img-rounded" style="height: 150px; width: 150px">
+                {% endif %}
+                {% if follow %}
+                <form action="{% url 'follow' user %}" method="post">
+                    <input type="submit" value="{{ follow }}"></input>
+                    {% csrf_token %}
+                </form>
+                {% endif %}
+                <ul class="list-group">
+                    <li class="list-group-item">Username: {{ user.username }}</li>
+                    <li class="list-group-item">First Name: {{ userprofile.first_name }}</li>
+                    <li class="list-group-item">LastName: {{ userprofile.last_name }}</li>
+                    <li class="list-group-item">Email: {{ userprofile.email }}</li>
+                    <li class="list-group-item">Age: {{ userprofile.age }}</li>
+                    <li class="list-group-item">Bio: {{ userprofile.bio }}</li>
+                </ul>
+            </div>
+        </div>
+        <br/><br/>
+        <div class="row col-md-8 col-md-offset-2">
+        <div id="allposts">
+          {% for post in posts %}
+              <div class="well" id="{{ post.id }}">
+                  <img src="{% url 'photo' post.user %}" class="img-rounded" style="height: 20px; width: 20px">
+                  <a href="{% url 'profile' post.user %}">{{ post.user }}</a>:{{ post }}<br>
+                  <input type="text" required><button class="comment">Comment</button>
+                  <ul>
+                      {% for comment in post.comments.all %}
+                          <li>
+                              <img src="{% url 'photo' comment.owner %}" class="img-rounded" style="height: 20px; width: 20px">
+                              <a href="{% url 'profile' comment.owner %}">{{ comment.owner }}</a>:{{ comment }}
+                          </li>
+                      {% endfor %}
+                  </ul>
+              </div>
+          {% endfor %}
+        </div>
+        </div>
+    </div>
+{% endblock %}

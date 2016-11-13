@@ -1,0 +1,57 @@
+{% extends 'grumblr/base.html' %}
+
+{% block title %}Global Stream{% endblock %}
+
+{% block navbar %}<a class="navbar-brand" href="{% url 'log_out' %}" xmlns="http://www.w3.org/1999/html">Log out</a>{% endblock %}
+
+{% block navbar2 %}<a class="navbar-brand" href="{% url 'editprofile' %}">My proflie</a>{% endblock %}
+
+{% block navbar3 %}<a class="navbar-brand" href="{% url 'home' %}">Home</a>{% endblock %}
+
+{% block script %}<script src="/static/js/pands.js" type="text/javascript"></script>{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" >
+                <br/><br/>
+                {% if userprof.photo %}
+                <img src="{% url 'photo' user %}" class="img-rounded" style="display: block; max-width: auto; height: 150px;">
+                {% endif %}
+                <a href="{% url 'profile' user %}"><b>user:&nbsp{{ user }}</b></a>
+            </div>
+            <div class="col-md-8" style="border-left:1px solid gray; padding:10px;">
+                {% for error in errors %}
+                <p style="color: red">{{ error }}</p>
+                {% endfor %}
+                <form action="{% url 'post' %}" method="post">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" name="content" required></textarea>
+                    </div>
+                    <div class="col-md-2 col-md-offset-10">
+                        <button type="submit" class="btn btn-info">Post</button>
+                    </div>
+                    {% csrf_token %}
+                </form>
+                <br/><br/>
+                <div id="allposts">
+                {% for post in posts %}
+                    <div class="well" id="{{ post.id }}">
+                        <img src="{% url 'photo' post.user %}" class="img-rounded" style="height: 20px; width: 20px">
+                        <a href="{% url 'profile' post.user %}">{{ post.user }}</a>:{{ post }}</br>
+                        <input type="text" required><button class="comment">Comment</button>
+                        <ul>
+                        {% for comment in post.comments.all %}
+                            <li>
+                                <img src="{% url 'photo' comment.owner %}" class="img-rounded" style="height: 20px; width: 20px">
+                                <a href="{% url 'profile' comment.owner %}">{{ comment.owner }}</a>:{{ comment }}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
