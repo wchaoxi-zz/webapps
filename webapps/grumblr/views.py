@@ -184,7 +184,7 @@ def register(request):
     send_mail(subject="Verify Your Email",
               message=email_body,
               from_email="chaoxiw@andrew.cmu.edu",
-              recipient_list=['wchaoxi@gmail.com'],
+              recipient_list=[userprofile.email],
               fail_silently=False)
 
 

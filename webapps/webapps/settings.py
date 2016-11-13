@@ -121,11 +121,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.andrew.cmu.edu'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ['MYID']
-EMAIL_HOST_PASSWORD = os.environ['MYPWD']
+# EMAIL_HOST_USER = os.environ['MYID']
+# EMAIL_HOST_PASSWORD = os.environ['MYPWD']
 EMAIL_USE_TLS = True
 
 
